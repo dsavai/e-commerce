@@ -1,3 +1,15 @@
+<?php
+include 'products_data.php';
+$selectedId = isset($_GET['id']) ? (int)$_GET['id'] : null;
+
+if (!$selectedId || !isset($products[$selectedId])) {
+    echo "<h2 class='text-red-500 p-6'>Invalid product selected.</h2>";
+    exit;
+}
+
+$product = $products[$selectedId];
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -5,7 +17,7 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>e-commerce</title>
-    <link href="assests/css/styles.css" rel="stylesheet">
+    <link href="assets/css/styles.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=credit_card" />
   </head>
   <body class="font-display bg-[#f5f6f7] text-gray-900">
@@ -18,19 +30,20 @@
             <div class="bg-white p-6 mt-4 rounded-[8px] shadow-sm">
                 <header class="text-lg font-semibold mb-4">Checkout</header>
                 <section>
-                    <form>
+                    <form action="pay.php" method="post">
                         <div class="mb-8">
                             <div class="mb-2">
                                 <div class="text-sm">
                                     <span>Subtotal</span>
-                                    <span class="float-right">$100.00</span>
+                                    <span class="float-right">$<?php echo $product['price'] ?></span>
                                 </div>
                             </div>
                             <div class="border-b border-gray-200 border-dashed"></div>
                             <div class="mt-2">
                                 <div class="text-sm font-bold">
                                     <span>Order total</span>
-                                    <span class="float-right">$100.00</span>
+                                    <span class="float-right">$<?php echo $product['price'] ?></span>
+                                    <input type="hidden" id="price" name="price" value="<?php echo $product['price'] ?>">
                                 </div>
                             </div>
                         </div>
@@ -41,26 +54,26 @@
                             </div>
                             <div class="flex gap-4">
                                 <div class="w-full">
-                                    <select class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3">
+                                    <select name="country" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3">
                                         <option value="US">+1 United States</option>
                                         <option value="CA">+1 Canada</option>
                                     </select>
                                 </div>
                                 <div class="w-full">
-                                    <input type="text" placeholder="Phone number" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
+                                    <input name="phone_number" type="text" placeholder="Phone number" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
                                 </div>
                             </div>
                             <div class="flex gap-4">
                                 <div class="w-full">
-                                    <input type="text" placeholder="Email address for receipt" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
+                                    <input name="email" type="text" placeholder="Email address for receipt" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
                                 </div>
                             </div>
                             <div class="flex gap-4">
                                 <div class="w-full">
-                                    <input type="text" placeholder="First name" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
+                                    <input name="first_name" type="text" placeholder="First name" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
                                 </div>
                                 <div class="w-full">
-                                    <input type="text" placeholder="Last name" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
+                                    <input name="last_name" type="text" placeholder="Last name" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
                                 </div>
                             </div>
                         </div>
@@ -76,13 +89,13 @@
                                     <span class="float-right material-symbols-outlined">credit_card</span>
                                 </div>
                                 <div class="py-4">
-                                    <input type="text" placeholder="Card number" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
+                                    <input id="card_number" type="text" placeholder="Card number" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
                                     <div class="flex gap-4">
                                         <div class="w-full">
-                                            <input type="text" placeholder="MM/YY" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
+                                            <input name="expiry" type="text" placeholder="MM/YY" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
                                         </div>
                                         <div class="w-full">
-                                            <input type="text" placeholder="CVV" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
+                                            <input name="cvv" type="text" placeholder="CVV" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
                                         </div>
                                     </div>
                                 </div>

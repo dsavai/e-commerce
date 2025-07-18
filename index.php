@@ -1,15 +1,4 @@
-<?php
-$products = [];
-
-for ($i = 1; $i <= 15; $i++) {
-$products[] = [
-'name' => "Gucci Jackie 1961 medium bag #$i",
-'image' => "assets/images/product_bag_01.png",
-'link' => "#"
-];
-}
-?>
-
+<?php include 'products_data.php'; ?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -30,13 +19,14 @@ $products[] = [
             <?php foreach ($products as $product): ?>
                 <div class="bg-white p-4 rounded shadow">
                     <div>
-                        <a href="<?= htmlspecialchars($product['link']) ?>">
+                        <a href="checkout.php?id=<?= $product['id'] ?>">
                             <img src="<?= htmlspecialchars($product['image']) ?>" alt="Product Image" class="w-full h-60 object-cover rounded mb-4" />
                         </a>
                     </div>
                     <h2 class="text-md font-semibold"><?= htmlspecialchars($product['name']) ?></h2>
+                    <p class="text-gray-600 mb-2">$<?= number_format($product['price'], 2) ?></p>
                     <button class="mt-2 bg-blue-500 text-[15px] text-white px-4 py-1 rounded hover:bg-blue-600 cursor-pointer">
-                        <a href="<?= htmlspecialchars($product['link']) ?>">Buy Now</a>
+                        <a href="checkout.php?id=<?= $product['id'] ?>">Buy Now</a>
                     </button>
                 </div>
             <?php endforeach; ?>

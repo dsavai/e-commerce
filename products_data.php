@@ -2,9 +2,9 @@
 $products = [
     [
         'id' => 1,
-        'name' => "Gucci Jackie 1961 Small Bag",
-        'image' => "assets/images/product_bag_01.png",
-        'price' => 1590,
+        'name' => "CHANEL Matelasse 30 Double Chain Flap Shoulder Bag Lambskin, Black A58600",
+        'image' => "assets/images/CHANEL_Matelasse_30_Double_Chain_Flap_Shoulder_Bag_Lambskin.jpg",
+        'price' => 7746.00,
     ],
     [
         'id' => 2,

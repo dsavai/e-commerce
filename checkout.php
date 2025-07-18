@@ -55,7 +55,6 @@ $product = $products[$selectedId];
                             <div class="flex gap-4">
                                 <div class="w-full">
                                     <select name="country" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3">
-                                        <option value="US">+1 United States</option>
                                         <option value="CA">+1 Canada</option>
                                     </select>
                                 </div>

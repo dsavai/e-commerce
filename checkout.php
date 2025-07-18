@@ -60,20 +60,20 @@ $product = $products[$selectedId];
                                     </select>
                                 </div>
                                 <div class="w-full">
-                                    <input name="phone_number" type="text" placeholder="Phone number" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
+                                    <input required name="phone_number" type="tel" placeholder="Phone number" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
                                 </div>
                             </div>
                             <div class="flex gap-4">
                                 <div class="w-full">
-                                    <input name="email" type="text" placeholder="Email address for receipt" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
+                                    <input required name="email" type="email" placeholder="Email address for receipt" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
                                 </div>
                             </div>
                             <div class="flex gap-4">
                                 <div class="w-full">
-                                    <input name="first_name" type="text" placeholder="First name" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
+                                    <input required name="first_name" type="text" placeholder="First name" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
                                 </div>
                                 <div class="w-full">
-                                    <input name="last_name" type="text" placeholder="Last name" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
+                                    <input required name="last_name" type="text" placeholder="Last name" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
                                 </div>
                             </div>
                         </div>
@@ -89,13 +89,13 @@ $product = $products[$selectedId];
                                     <span class="float-right material-symbols-outlined">credit_card</span>
                                 </div>
                                 <div class="py-4">
-                                    <input id="card_number" type="text" placeholder="Card number" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
+                                    <input required id="card_number" type="text" placeholder="Card number" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
                                     <div class="flex gap-4">
                                         <div class="w-full">
-                                            <input name="expiry" type="text" placeholder="MM/YY" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
+                                            <input required name="expiry" type="text" placeholder="MM/YY" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
                                         </div>
                                         <div class="w-full">
-                                            <input name="cvv" type="text" placeholder="CVV" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
+                                            <input required name="cvv" type="text" placeholder="CVV" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
                                         </div>
                                     </div>
                                 </div>

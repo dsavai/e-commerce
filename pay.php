@@ -64,7 +64,6 @@ $mpgHttpPost  =new mpgHttpsPost($store_id,$api_token,$mpgRequest);
 $mpgResponse=$mpgHttpPost->getMpgResponse();
 
 
-
 if ($mpgResponse->responseData['Complete'])
 {
     header('Location: success.php');

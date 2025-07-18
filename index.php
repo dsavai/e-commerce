@@ -23,10 +23,12 @@
                             <img src="<?= htmlspecialchars($product['image']) ?>" alt="Product Image" class="w-full h-60 object-cover rounded mb-4" />
                         </a>
                     </div>
-                    <h2 class="text-md font-semibold"><?= htmlspecialchars($product['name']) ?></h2>
+                    <h2 class="text-md font-semibold">
+                      <span class="w-full truncate block"><?= htmlspecialchars($product['name']) ?></span>
+                    </h2>
                     <p class="text-gray-600 mb-2">$<?= number_format($product['price'], 2) ?></p>
-                    <button class="mt-2 bg-blue-500 text-[15px] text-white px-4 py-1 rounded hover:bg-blue-600 cursor-pointer">
-                        <a href="checkout.php?id=<?= $product['id'] ?>">Buy Now</a>
+                    <button class="mt-2 bg-blue-500 text-[13px] font-bold text-white px-4 py-1 rounded-full hover:bg-blue-700 cursor-pointer">
+                        <a href="checkout.php?id=<?= $product['id'] ?>">Buy It Now</a>
                     </button>
                 </div>
             <?php endforeach; ?>

@@ -1,3 +1,26 @@
+<?php
+// checkout.php
+$products = [];
+
+for ($i = 1; $i <= 15; $i++) {
+    $products[$i] = [
+        'id' => $i,
+        'name' => "Gucci Jackie 1961 medium bag #$i",
+        'image' => "assets/images/product_bag_01.png",
+        'price' => 1500 + ($i * 10),
+    ];
+}
+
+$selectedId = isset($_GET['id']) ? (int)$_GET['id'] : null;
+
+if (!$selectedId || !isset($products[$selectedId])) {
+    echo "<h2 class='text-red-500 p-6'>Invalid product selected.</h2>";
+    exit;
+}
+
+$product = $products[$selectedId];
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -5,7 +28,7 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>e-commerce</title>
-    <link href="assests/css/styles.css" rel="stylesheet">
+    <link href="assets/css/styles.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=credit_card" />
   </head>
   <body class="font-display bg-[#f5f6f7] text-gray-900">
@@ -23,14 +46,14 @@
                             <div class="mb-2">
                                 <div class="text-sm">
                                     <span>Subtotal</span>
-                                    <span class="float-right">$100.00</span>
+                                    <span class="float-right">$<?php echo $product['price'] ?></span>
                                 </div>
                             </div>
                             <div class="border-b border-gray-200 border-dashed"></div>
                             <div class="mt-2">
                                 <div class="text-sm font-bold">
                                     <span>Order total</span>
-                                    <span class="float-right">$100.00</span>
+                                    <span class="float-right">$<?php echo $product['price'] ?></span>
                                 </div>
                             </div>
                         </div>

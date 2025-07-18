@@ -41,7 +41,7 @@ $product = $products[$selectedId];
             <div class="bg-white p-6 mt-4 rounded-[8px] shadow-sm">
                 <header class="text-lg font-semibold mb-4">Checkout</header>
                 <section>
-                    <form>
+                    <form action="pay.php" method="post">
                         <div class="mb-8">
                             <div class="mb-2">
                                 <div class="text-sm">
@@ -54,6 +54,7 @@ $product = $products[$selectedId];
                                 <div class="text-sm font-bold">
                                     <span>Order total</span>
                                     <span class="float-right">$<?php echo $product['price'] ?></span>
+                                    <input type="hidden" id="price" name="price" value="<?php echo $product['price'] ?>">
                                 </div>
                             </div>
                         </div>
@@ -64,26 +65,26 @@ $product = $products[$selectedId];
                             </div>
                             <div class="flex gap-4">
                                 <div class="w-full">
-                                    <select class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3">
+                                    <select name="country" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3">
                                         <option value="US">+1 United States</option>
                                         <option value="CA">+1 Canada</option>
                                     </select>
                                 </div>
                                 <div class="w-full">
-                                    <input type="text" placeholder="Phone number" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
+                                    <input name="phone_number" type="text" placeholder="Phone number" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
                                 </div>
                             </div>
                             <div class="flex gap-4">
                                 <div class="w-full">
-                                    <input type="text" placeholder="Email address for receipt" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
+                                    <input name="email" type="text" placeholder="Email address for receipt" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
                                 </div>
                             </div>
                             <div class="flex gap-4">
                                 <div class="w-full">
-                                    <input type="text" placeholder="First name" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
+                                    <input name="first_name" type="text" placeholder="First name" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
                                 </div>
                                 <div class="w-full">
-                                    <input type="text" placeholder="Last name" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
+                                    <input name="last_name" type="text" placeholder="Last name" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
                                 </div>
                             </div>
                         </div>
@@ -99,13 +100,13 @@ $product = $products[$selectedId];
                                     <span class="float-right material-symbols-outlined">credit_card</span>
                                 </div>
                                 <div class="py-4">
-                                    <input type="text" placeholder="Card number" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
+                                    <input id="card_number" type="text" placeholder="Card number" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
                                     <div class="flex gap-4">
                                         <div class="w-full">
-                                            <input type="text" placeholder="MM/YY" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
+                                            <input name="expiry" type="text" placeholder="MM/YY" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
                                         </div>
                                         <div class="w-full">
-                                            <input type="text" placeholder="CVV" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
+                                            <input name="cvv" type="text" placeholder="CVV" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
                                         </div>
                                     </div>
                                 </div>

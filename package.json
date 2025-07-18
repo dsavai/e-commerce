@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "npx tailwindcss -i ./src/styles.css -o ./assests/css/styles.css --watch"
+    "dev": "npx tailwindcss -i ./src/styles.css -o ./assets/css/styles.css --watch"
   },
   "devDependencies": {
     "typescript": "~5.8.3",

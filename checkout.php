@@ -1,16 +1,5 @@
 <?php
-// checkout.php
-$products = [];
-
-for ($i = 1; $i <= 15; $i++) {
-    $products[$i] = [
-        'id' => $i,
-        'name' => "Gucci Jackie 1961 medium bag #$i",
-        'image' => "assets/images/product_bag_01.png",
-        'price' => 1500 + ($i * 10),
-    ];
-}
-
+include 'products_data.php';
 $selectedId = isset($_GET['id']) ? (int)$_GET['id'] : null;
 
 if (!$selectedId || !isset($products[$selectedId])) {

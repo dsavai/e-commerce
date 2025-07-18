@@ -29,7 +29,7 @@ $api_token="yesguy";
 $type='preauth';
 $cust_id='cust id';
 $order_id='ord-'.date("dmy-G:i:s");
-$amount=$price;
+$amount='1.00';
 $pan='4242424242424242';
 $expiry_date='2011';
 $crypt='7';
@@ -64,8 +64,15 @@ $mpgHttpPost  =new mpgHttpsPost($store_id,$api_token,$mpgRequest);
 $mpgResponse=$mpgHttpPost->getMpgResponse();
 
 
-print_r($mpgResponse);
-exit;
+
+if ($mpgResponse->responseData['Complete'])
+{
+    header('Location: success.php');
+}
+else {
+    header('Location: error.php');
+}
+
 
 print("\nCardType = " . $mpgResponse->getCardType());
 print("\nTransAmount = " . $mpgResponse->getTransAmount());

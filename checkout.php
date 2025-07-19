@@ -2,12 +2,12 @@
 include 'products_data.php';
 $selectedId = isset($_GET['id']) ? (int)$_GET['id'] : null;
 
-if (!$selectedId || !isset($products[$selectedId])) {
+if (!$selectedId || !isset($products[$selectedId-1])) {
     echo "<h2 class='text-red-500 p-6'>Invalid product selected.</h2>";
     exit;
 }
 
-$product = $products[$selectedId];
+$product = $products[$selectedId-1];
 
 ?>
 <!doctype html>
@@ -88,10 +88,31 @@ $product = $products[$selectedId];
                                     <span class="float-right material-symbols-outlined">credit_card</span>
                                 </div>
                                 <div class="py-4">
-                                    <input required id="card_number" type="text" placeholder="Card number" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
+                                    <input
+                                            required
+                                            id="card_number"
+                                            name="card_number"
+                                            type="text"
+                                            inputmode="numeric"
+                                            pattern="^\d{13,19}$"
+                                            maxlength="19"
+                                            placeholder="Card number"
+                                            title="Card number must be 13 to 19 digits"
+                                            class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4"
+                                    />
+
                                     <div class="flex gap-4">
                                         <div class="w-full">
-                                            <input required name="expiry" type="text" placeholder="MM/YY" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
+                                            <input
+                                                    required
+                                                    name="expiry"
+                                                    type="text"
+                                                    placeholder="MM/YY"
+                                                    pattern="^(0[1-9]|1[0-2])\/\d{2}$"
+                                                    maxlength="5"
+                                                    title="Expiry must be in MM/YY format"
+                                                    class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4"
+                                            />
                                         </div>
                                         <div class="w-full">
                                             <input required name="cvv" type="text" placeholder="CVV" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />

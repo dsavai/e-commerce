@@ -22,6 +22,15 @@ $first_name   = isset($_POST['first_name']) ? sanitize($_POST['first_name']) : '
 $last_name    = isset($_POST['last_name']) ? sanitize($_POST['last_name']) : '';
 $expiry       = isset($_POST['expiry']) ? sanitize($_POST['expiry']) : '';
 $cvv          = isset($_POST['cvv']) ? sanitize($_POST['cvv']) : '';
+$card_number          = isset($_POST['card_number']) ? sanitize($_POST['card_number']) : '';
+
+if (preg_match('/^\d{2}\/\d{2}$/', $expiry)) {
+    list($mm, $yy) = explode('/', $expiry);
+    $expiry_date = $yy . $mm;  // Convert to YYMM
+} else {
+    // Optional: fallback if format is incorrect
+    $expiry_date = '0000';
+}
 
 $store_id='store5';
 $api_token="yesguy";
@@ -29,9 +38,9 @@ $api_token="yesguy";
 $type='preauth';
 $cust_id='cust id';
 $order_id='ord-'.date("dmy-G:i:s");
-$amount='1.00';
-$pan='4242424242424242';
-$expiry_date='2011';
+$amount=$price;
+$pan=$card_number;
+//$expiry_date='2011';
 $crypt='7';
 $status_check = 'false';
 //Optional - Set for Multi-Currency only

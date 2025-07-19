@@ -4,7 +4,7 @@ $products = [
         'id' => 1,
         'name' => "CHANEL Matelasse 30 Double Chain Flap Shoulder Bag Lambskin, Black A58600",
         'image' => "assets/images/CHANEL_Matelasse_30_Double_Chain_Flap_Shoulder_Bag_Lambskin.jpg",
-        'price' => 7746.00,
+        'price' => number_format('7746.00', 2, '.', ''),
     ],
     [
         'id' => 2,

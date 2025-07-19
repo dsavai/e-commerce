@@ -38,6 +38,7 @@ $api_token="yesguy";
 $type='preauth';
 $cust_id='cust id';
 $order_id='ord-'.date("dmy-G:i:s");
+// $amount=$price;
 $amount=$price;
 $pan=$card_number;
 //$expiry_date='2011';
@@ -71,7 +72,9 @@ $mpgRequest->setProcCountryCode("CA"); //"US" for sending transaction to US envi
 $mpgRequest->setTestMode(true); //false or comment out this line for production transactions
 $mpgHttpPost  =new mpgHttpsPost($store_id,$api_token,$mpgRequest);
 $mpgResponse=$mpgHttpPost->getMpgResponse();
-
+// echo '<pre>';
+// print_r($mpgResponse);
+// exit;
 
 if ($mpgResponse->responseData['Complete'])
 {

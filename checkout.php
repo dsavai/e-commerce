@@ -16,17 +16,20 @@ $product = $products[$selectedId-1];
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>e-commerce</title>
+    <title>Best Deal World</title>
     <link href="assets/css/styles.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=credit_card" />
   </head>
   <body class="font-display bg-[#f5f6f7] text-gray-900">
-    <header class="bg-white shadow-sm p-4">
-      <h1 class="text-[20px] font-bold text-center">E-commerce Site</h1>
+    <header>
+      <?php include 'header.php'; ?>
     </header>
+    <nav>
+      <?php include 'menu.php'; ?>
+    </nav> 
     <main>
       <section class="container mx-auto p-4">
-        <div class="mx-auto w-[600px]">
+        <div class="mx-auto w-full md:w-[600px]">
             <div class="bg-white p-6 mt-4 rounded-[8px] shadow-sm">
                 <header class="text-lg font-semibold mb-4">Checkout</header>
                 <section>
@@ -52,7 +55,7 @@ $product = $products[$selectedId-1];
                             <div>
                                 <small class="font-bold">Contact</small>
                             </div>
-                            <div class="flex gap-4">
+                            <div class="md:flex gap-4">
                                 <div class="w-full">
                                     <select name="country" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3">
                                         <option value="CA">+1 Canada</option>
@@ -67,7 +70,7 @@ $product = $products[$selectedId-1];
                                     <input required name="email" type="email" placeholder="Email address for receipt" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
                                 </div>
                             </div>
-                            <div class="flex gap-4">
+                            <div class="md:flex gap-4">
                                 <div class="w-full">
                                     <input required name="first_name" type="text" placeholder="First name" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
                                 </div>
@@ -101,7 +104,7 @@ $product = $products[$selectedId-1];
                                             class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4"
                                     />
 
-                                    <div class="flex gap-4">
+                                    <div class="lg:flex block gap-4">
                                         <div class="w-full">
                                             <input
                                                     required

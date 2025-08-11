@@ -4,3 +4,7 @@
 @theme {
   --font-display: "Be Vietnam Pro", sans-serif;
 }
+
+.active{
+  @apply font-semibold text-[#947040] underline;
+}

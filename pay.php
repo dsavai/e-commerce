@@ -32,8 +32,10 @@ if (preg_match('/^\d{2}\/\d{2}$/', $expiry)) {
     $expiry_date = '0000';
 }
 
-$store_id='store5';
-$api_token="yesguy";
+// $store_id='store5';
+// $api_token="yesguy";
+$store_id='gwca085702';
+$api_token="kO5dTuoA3ODVyEmF6xvZ";
 /************************* Transactional Variables ****************************/
 $type='preauth';
 $cust_id='cust id';

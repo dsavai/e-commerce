@@ -57,7 +57,7 @@ curl_setopt($ch, CURLOPT_VERBOSE, true);
 
 $result = curl_exec($ch); // run the curl process
 
-print_r($result);
+//print_r($result);
 curl_close($ch); // Close cURL
 
 $token= $result;  //shows the session token.

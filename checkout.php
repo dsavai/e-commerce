@@ -107,7 +107,7 @@ $token= $result;  //shows the session token.
                         <form action="https://api.demo.convergepay.com/hosted-payments/" method="POST" enctype="application/x-www-form-urlencoded">
                             <input id="ssl_txn_auth_token" value="<?php echo $token ?>" type="text" name="ssl_txn_auth_token" size="25" class="hidden" />
                             <div class="flex justify-center items-center w-full">
-                              <button type="submit" class="block mt-2 bg-blue-500  font-bold text-white px-8 py-3 rounded-full hover:bg-blue-700 cursor-pointer">Continue to checkout</button>
+                              <button type="submit" class="block mt-2 bg-blue-500  font-semibold text-white px-8 py-3 rounded-full hover:bg-blue-700 cursor-pointer">Continue to checkout</button>
                             </div>
                         </form>
                 </section>

@@ -105,23 +105,10 @@ $token= $result;  //shows the session token.
                         </div>
                         <hr class="my-4 border-gray-300" />
                         <form action="https://api.demo.convergepay.com/hosted-payments/" method="POST" enctype="application/x-www-form-urlencoded">
-
-                            <table border="1" width="40%" bordercolorlight="#C0C0C0" cellspacing="1" bordercolordark="#FFFFFF">
-                                <tr>
-                                    <td colspan="2"><b><font face="Arial Narrow">Redirect Cardholder to Converge Next Gen HPP - DEMO</font></b></td>
-                                </tr>
-                                <tr>
-                                    <td><font face="Arial Narrow">One Time Session Token</font></td>
-                                    <td><font face="Arial Narrow">
-                                            <input id="ssl_txn_auth_token" value="<?php echo $token ?>" type="text" name="ssl_txn_auth_token" size="25"></font></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <p align="center">
-                                            <font face="Arial Narrow">
-                                                <input type="submit" value="Redirect Cardholder to Converge" name="Submit"></font></td>
-                                </tr>
-                            </table>
+                            <input id="ssl_txn_auth_token" value="<?php echo $token ?>" type="text" name="ssl_txn_auth_token" size="25" class="hidden" />
+                            <div class="flex justify-center items-center w-full">
+                              <button type="submit" class="block mt-2 bg-blue-500  font-bold text-white px-8 py-3 rounded-full hover:bg-blue-700 cursor-pointer">Continue to checkout</button>
+                            </div>
                         </form>
                 </section>
             </div>

@@ -86,7 +86,7 @@ $token= $result;  //shows the session token.
             <div class="bg-white p-6 mt-4 rounded-[8px] shadow-sm">
                 <header class="text-lg font-semibold mb-4">Checkout</header>
                 <section>
-                    <form action="pay.php" method="post">
+
                         <div class="mb-8">
                             <div class="mb-2">
                                 <div class="text-sm">
@@ -123,7 +123,6 @@ $token= $result;  //shows the session token.
                                 </tr>
                             </table>
                         </form>
-                    </form>
                 </section>
             </div>
         </div>

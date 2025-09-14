@@ -9,6 +9,59 @@ if (!$selectedId || !isset($products[$selectedId-1])) {
 
 $product = $products[$selectedId-1];
 
+
+
+$merchantID = "0022930"; //Virtual Merchant Account ID
+$merchantUserID = "apiuser"; //Virtual Merchant  User ID
+$merchantPinCode = "RO9A6ZRWZC5Q3WACS5RMTHYE3NE98Y5C0UT6T8TVQM5HUV8PE2QB6UYVCNKEYW80"; //Converge PIN
+$vendorID = "0022930"; //Vendor ID
+
+$url = "https://api.demo.convergepay.com/hosted-payments/transaction_token"; // URL to Converge demo session token server
+//$url = "https://api.convergepay.com/hosted-payments/transaction_token"; // URL to Converge production session token server
+
+// Read the following querystring variables
+
+//$amount = $_POST['ssl_amount']; //Post Tran Amount
+$amount = $product['price']; //Post Tran Amount
+
+
+$ch = curl_init();    // initialize curl handle
+curl_setopt($ch, CURLOPT_URL, $url); // set url to post to
+curl_setopt($ch, CURLOPT_POST, true); // set POST method
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+// Set up the post fields. If you want to add custom fields, you would add them in Converge, and add the field name in the curlopt_postfields string.
+curl_setopt($ch, CURLOPT_POSTFIELDS,
+        "ssl_merchant_id=$merchantID".
+        "&ssl_user_id=$merchantUserID".
+        "&ssl_pin=$merchantPinCode".
+        "&ssl_vendor_id=$vendorID".
+// "&ssl_first_name=Samuel". //You can pass in values from your application and they will appear and pre-populate the HPP form
+// "&ssl_avs_address=7301 Chapman Hwy". //You can pass in values from your application and they will appear and pre-populate the HPP form
+// "&ssl_avs_zip=37920". //You can pass in values from your application and they will appear and pre-populate the HPP form
+        "&ssl_invoice_number=Inv123".
+//"&ssl_next_payment_date=03/03/2023". //used only if transaction type is ccrecurring
+//"&ssl_billing_cycle=MONTHLY".  //used only if transaction type is ccrecurring
+        "&ssl_transaction_type=ccsale".
+        "&ssl_verify=N". //set to 'Y'if transaction type is ccgettoken, otherwise not needed
+        "&ssl_get_token=Y". //pass with 'Y' if you wish to tokenize the card as part of a ccsale, do not send if transaction type set to ccgettoken
+        "&ssl_add_token=Y". // should always be Y if using card manager and either transaction type is set to 'Y' or if ssl_get_token is set to 'Y'.
+        "&ssl_amount=$amount" //do not pass amount if using ccgettoken as the transaction type
+);
+
+
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_VERBOSE, true);
+
+$result = curl_exec($ch); // run the curl process
+
+print_r($result);
+curl_close($ch); // Close cURL
+
+$token= $result;  //shows the session token.
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -51,84 +104,25 @@ $product = $products[$selectedId-1];
                             </div>
                         </div>
                         <hr class="my-4 border-gray-300" />
-                        <div class="mt-2 mb-8">
-                            <div>
-                                <small class="font-bold">Contact</small>
-                            </div>
-                            <div class="md:flex gap-4">
-                                <div class="w-full">
-                                    <select name="country" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3">
-                                        <option value="CA">+1 Canada</option>
-                                    </select>
-                                </div>
-                                <div class="w-full">
-                                    <input required name="phone_number" type="tel" placeholder="Phone number" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
-                                </div>
-                            </div>
-                            <div class="flex gap-4">
-                                <div class="w-full">
-                                    <input required name="email" type="email" placeholder="Email address for receipt" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
-                                </div>
-                            </div>
-                            <div class="md:flex gap-4">
-                                <div class="w-full">
-                                    <input required name="first_name" type="text" placeholder="First name" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
-                                </div>
-                                <div class="w-full">
-                                    <input required name="last_name" type="text" placeholder="Last name" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="my-4 border-gray-300" />
-                        <div class="mb-8">
-                            <div class="mb-4">
-                                <small class="font-bold">Payment</small>
-                                <div class="text-gray-400 text-base font-normal">All transactions are secure and encrypted</div>
-                            </div>
-                            <div class="border-2 rounded-[8px] p-6">
-                                <div>
-                                    <span class="text-sm font-medium">Card details</span>
-                                    <span class="float-right material-symbols-outlined">credit_card</span>
-                                </div>
-                                <div class="py-4">
-                                    <input
-                                            required
-                                            id="card_number"
-                                            name="card_number"
-                                            type="text"
-                                            inputmode="numeric"
-                                            pattern="^\d{13,19}$"
-                                            maxlength="19"
-                                            placeholder="Card number"
-                                            title="Card number must be 13 to 19 digits"
-                                            class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4"
-                                    />
+                        <form action="https://api.demo.convergepay.com/hosted-payments/" method="POST" enctype="application/x-www-form-urlencoded">
 
-                                    <div class="lg:flex block gap-4">
-                                        <div class="w-full">
-                                            <input
-                                                    required
-                                                    name="expiry"
-                                                    type="text"
-                                                    placeholder="MM/YY"
-                                                    pattern="^(0[1-9]|1[0-2])\/\d{2}$"
-                                                    maxlength="5"
-                                                    title="Expiry must be in MM/YY format"
-                                                    class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4"
-                                            />
-                                        </div>
-                                        <div class="w-full">
-                                            <input required name="cvv" type="text" placeholder="CVV" class="w-full mt-2 bg-white border border-gray-300 rounded-md p-3 px-4" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="my-4 border-gray-300" />
-                        <button type="submit" class="block mt-4 bg-blue-500 text-white font-bold text-sm px-4 py-4 cursor-pointer rounded-[8px] w-full">Checkout</button>
-                        <div class="mt-4 text-gray-500">
-                            <span class="text-sm">By clicking Checkout, you authorize this transaction, and agree it is non-refundable and made the purchase.</span>
-                        </div>
+                            <table border="1" width="40%" bordercolorlight="#C0C0C0" cellspacing="1" bordercolordark="#FFFFFF">
+                                <tr>
+                                    <td colspan="2"><b><font face="Arial Narrow">Redirect Cardholder to Converge Next Gen HPP - DEMO</font></b></td>
+                                </tr>
+                                <tr>
+                                    <td><font face="Arial Narrow">One Time Session Token</font></td>
+                                    <td><font face="Arial Narrow">
+                                            <input id="ssl_txn_auth_token" value="<?php echo $token ?>" type="text" name="ssl_txn_auth_token" size="25"></font></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <p align="center">
+                                            <font face="Arial Narrow">
+                                                <input type="submit" value="Redirect Cardholder to Converge" name="Submit"></font></td>
+                                </tr>
+                            </table>
+                        </form>
                     </form>
                 </section>
             </div>
